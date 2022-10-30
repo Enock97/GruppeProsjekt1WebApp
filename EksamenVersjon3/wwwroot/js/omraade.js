@@ -21,5 +21,5 @@ console.log("Antall observasjoner i region fem: " + resultat5);
 
 //Kode inspirert av linken under:
 //https://dirask.com/snippets/javascript/js%20count%20numbers%20less%20than%20x%20in%20array
-//Vi tenker å videreutvikle dette i oppgave 2.
+//Vi tenker å videreutvikle dette i oppgave 2. Dette dokumenteres.
 
