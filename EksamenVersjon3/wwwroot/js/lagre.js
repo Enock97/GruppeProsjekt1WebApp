@@ -1,4 +1,4 @@
-﻿function lagreObv() { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+﻿function lagreObv() { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
     const observasjon = {
         Navn: $("#Navn").val(),
         Postkode: $("#Postkode").val(),

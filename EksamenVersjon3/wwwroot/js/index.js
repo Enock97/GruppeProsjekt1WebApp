@@ -1,16 +1,16 @@
 ﻿
 
-$(function () { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+$(function () { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
     hentAlleObservasjoner();
 });
 
-function hentAlleObservasjoner() { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+function hentAlleObservasjoner() { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
     $.get("observasjon/hentAlle", function (observasjoner) {
         formaterObservasjoner(observasjoner);
     });
 }
 
-function formaterObservasjoner(observasjoner) { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+function formaterObservasjoner(observasjoner) { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
     let ut = "<section class='alle_innlegg'>";
 
 

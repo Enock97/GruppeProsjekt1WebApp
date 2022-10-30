@@ -1,4 +1,4 @@
-﻿$(function () { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+﻿$(function () { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
  
     const id = window.location.search.substring(1);
     const url = "observasjon/HentEn?" + id;
@@ -13,7 +13,7 @@
 });
 
 
-function endreObv() { //Denne funksjonen er selvutviklet men flere av delene er hentet fra KundeApp2-med-DAL filen fra canvas
+function endreObv() { //Denne funksjonen er selvutviklet men noen av delene er hentet fra KundeApp2-med-DAL filen fra canvas
     const obvservasjon = {
         id: $("#Id").val(), 
         Navn: $("#Navn").val(),
