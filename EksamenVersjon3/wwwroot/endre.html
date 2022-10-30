@@ -1,0 +1,65 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/endre.js"></script>
+    <link rel="stylesheet" href="css/lagre.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css">
+
+</head>
+<body>
+    <!-- Navigasjonsbar -->
+    <header>
+        <div class="navbar">
+            <ul>
+                <li><a href="index.html">Hjem</a></li>
+                <li><a href="lagre.html">Observasjon</a></li>
+                <li><a href="about.html">Om oss</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!--Bakgrunn med overskrift-->
+    <div class="bg"></div>
+    <h1 class="overskrift">Fortell oss det du vet!</h1>
+
+    <!--Registreringsskjema-->
+    <div class="main">
+        <input type="hidden" id="Id" />
+        <form>
+
+            <h2>Din observasjon</h2>
+            <hr class="tynnlinje">
+
+            <div class="containerNavn">
+                <label for="Navn">Navn</label>
+                <input type="text" id="Navn" placeholder="Ditt navn...">
+                <label for="Postkode">Postkode</label>
+                <input type="text" id="Postkode" placeholder="Din postkode...">
+            </div>
+
+            <div class="containerDato">
+                <label for="Dato">Dato</label>
+                <input type="text" id="Dato" placeholder="Dato..">
+                <label for="Tidspunkt">Tidspunkt</label>
+                <input type="text" id="Tid" placeholder="Tid..">
+            </div>
+
+            <div class="containerObv">
+                <label for="Observasjoner">Din observasjon</label>
+                <textarea type="text" id="Obv" placeholder="Din observasjon.." rows="12"></textarea>
+            </div>
+
+            <!--Knapp for regestrering-->
+            <div class="containerbtn">
+                <input type="button" id="reg" value="Endre" onClick="endreObv()" class="btn btn-primary" />
+            </div>
+
+        </form>
+
+        <div id="feil" style="color: red"></div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*Navigasjonsbar*/
+.navbar {
+    height: 3rem;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+}
+
+    .navbar :hover {
+        color: black;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline-flex;
+}
+
+    li a {
+        text-decoration: none;
+        float: left;
+        display: block;
+        padding: 12px;
+        font-size: 20px;
+        color: #696969;
+    }
+
+.boxnavbar {
+    border-style: solid;
+    border-color: #fff;
+}
+
+
+/*Boks med informasjon*/
+.box1 {
+    margin-top: 0px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 30px;
+    margin-right: auto;
+}
+
+h1 {
+    font-size: 60px;
+}
+
+.box2 {
+    margin-top: 100px;
+    padding-left: 5%;
+    padding-right: 5%;
+    font-size: 30px;
+    margin-left: 0%;
+}
+
+.btncontainer {
+    margin-top: 20px;
+}
+
+
+/*Knapp for registrering av observasjon*/
+.btn {
+    height: 50px;
+    width: 110px;
+    padding: 5px;
+    border: none;
+    border-radius: 4px;
+    background-color: #3369ff;
+    color: #fff;
+    font-size: 15px;
+}
+
+a :hover {
+    cursor: pointer;
+    filter: brightness(90%);
+    box-shadow: 0 4px 4px;
+}
+
+.btncontainer {
+    margin-top: 20px;
+}
+
+
+/*css-kode for å gjøre nettsiden responsive*/
+@media screen and (max-width: 1000px) {
+    .box1 {
+        margin-top: 0px;
+        padding-left: 5%;
+        padding-right: 5%;
+        font-size: 30px;
+        margin-right: auto;
+    }
+
+    h1 {
+        font-size: 60px;
+    }
+
+    .box2 {
+        margin-top: 100px;
+        padding-left: 5%;
+        padding-right: 5%;
+        font-size: 30px;
+        margin-left: 0%;
+    }
+
+    .btncontainer {
+        margin-top: 20px;
+    }
+}

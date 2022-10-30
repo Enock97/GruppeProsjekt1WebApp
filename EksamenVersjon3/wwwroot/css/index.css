@@ -1,0 +1,183 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/*Navigasjonsbar*/
+.navbar {
+    height: 3rem;
+    z-index: 2;
+    position: absolute;
+    width: 100%;
+    background-color: #fff;
+}
+
+    .navbar :hover {
+        color: black;
+    }
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    display: inline-flex;
+}
+
+    li a {
+        text-decoration: none;
+        float: left;
+        display: block;
+        padding: 12px;
+        font-size: 20px;
+        color: #696969;
+    }
+
+/*Header for siden*/
+div.innlegg_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    margin-top: -20px;
+}
+
+.tynnlinje {
+    height: 1px;
+    border: 0;
+    color: #333;
+    background-color: #333;
+    width: 80%;
+    margin-top: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+/*Skjema laget/regestrert av "bruker*/
+div.center_page {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 85%;
+}
+
+section.alle_innlegg {
+}
+
+section.innleggene {
+    display: flex;
+    flex-direction: row;
+    height: 150px;
+    margin-top: 10px;
+}
+
+div.innlegg_beskrivelse {
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid black;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-style: solid;
+    width: 70%;
+    background: #F5F5F5;
+}
+
+section.innlegg_hoyredel {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    background: blue;
+}
+
+div.innlegg_navn {
+    display: flex;
+    flex-direction: row;
+    height: 25%;
+    background: #D3D3D3;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-top: 2px solid black;
+    border-style: solid;
+}
+
+div.innlegg_postkode {
+    display: flex;
+    flex-direction: row;
+    height: 25%;
+    background: #D3D3D3;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-style: solid;
+}
+
+div.innlegg_dato {
+    display: flex;
+    flex-direction: row;
+    height: 25%;
+    background: #D3D3D3;
+    border-top: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    border-style: solid;
+}
+
+div.innlegg_tid {
+    display: flex;
+    flex-direction: row;
+    height: 25%;
+    background: #D3D3D3;
+    border-bottom: 2px solid black;
+    border-right: 2px solid black;
+    border-style: solid;
+}
+
+div.innlegg_vedlegg {
+    display: flex;
+    flex-direction: row;
+    background: #D3D3D3;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    height: 60px;
+}
+
+@media screen and (max-width: 1140px) {
+
+    div.innlegg_header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+    }
+}
+
+@media screen and (max-width: 910px) {
+
+    div.innlegg_header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 750px) {
+
+    div.innlegg_header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+    }
+}
