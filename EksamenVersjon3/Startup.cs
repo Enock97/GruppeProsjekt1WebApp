@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ObservasjonContext = EksamenVersjon3.DAL.ObservasjonContext;
+using Microsoft.Extensions.Logging;
 
 namespace EksamenVersjon3
 {
@@ -34,11 +35,12 @@ namespace EksamenVersjon3
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                loggerFactory.AddFile("Logs/ObservasjonLog.txt"); //Oppretter filstruktur for logging
                 DBInit.Initialize(app);
             }
             else
