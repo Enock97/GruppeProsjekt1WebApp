@@ -25,7 +25,7 @@ namespace EksamenVersjon3.Controllers
             _log = log;
         }
 
-        //Følgende asynkrone CRUD metoder blir initialisert og returnerer metodene i IObservasjonRepository
+        //Fï¿½lgende asynkrone CRUD metoder blir initialisert og returnerer metodene i IObservasjonRepository
         public async Task<bool> Lagre(Observasjon innObservasjon)
         {
             _log.LogInformation("En ny observasjon har blitt lagret."); //Logger til fil dersom en ny observasjon har blitt lagret
@@ -54,6 +54,23 @@ namespace EksamenVersjon3.Controllers
         {
             _log.LogInformation("En observasjon har blitt endret."); //Logger til fil dersom en observasjon har blitt endret
             return await _db.Endre(endreObservasjon);
+        }
+
+        //Koden under er hentet fra "Controller" mappen som igjen ligger under mappen "KundeApp2-med-hash-logginn" hentet fra canvas
+        public async Task<ActionResult> LoggInn(Bruker bruker)
+        {
+            if (ModelState.IsValid)
+            {
+                bool returnOK = await _db.LoggInn(bruker);
+                if (!returnOK)
+                {
+                    _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
+                    return Ok(false);
+                }
+                return Ok(true);
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering pÃ¥ server");
         }
     }
 }
