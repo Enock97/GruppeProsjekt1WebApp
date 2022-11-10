@@ -24,7 +24,7 @@ namespace EksamenVersjon3.DAL
                 {
                     Id = 1,
                     Postkode = "0001",
-                    Beskrivelse = "Grønn UFO",
+                    Beskrivelse = "Grï¿½nn UFO",
                     Navn = "Ola Nordmann",
                     Dato = "1 januar 2022",
                     Tid = "22:30"
@@ -34,14 +34,26 @@ namespace EksamenVersjon3.DAL
                 {
                     Id = 2,
                     Postkode = "0002",
-                    Beskrivelse = "Blå UFO",
-                    Navn = "Sam Møller",
+                    Beskrivelse = "Blï¿½ UFO",
+                    Navn = "Sam Mï¿½ller",
                     Dato = "2 januar 2022",
                     Tid = "20:00"
                 };
+
+                // lag en pÃ¥oggingsbruker
+                //Koden under er hentet fra "DAL" mappen som igjen ligger under mappen "KundeApp2-med-hash-logginn" hentet fra canvas
+                var bruker = new Brukere();
+                bruker.Brukernavn = "Admin";
+                var passord = "Test11";
+                byte[] salt = ObservasjonRepository.LagSalt();
+                byte[] hash = ObservasjonRepository.LagHash(passord, salt);
+                bruker.Passord = hash;
+                bruker.Salt = salt;
+
                 //Legger til dummy dataen i databasen
                 context.Observasjoner.Add(observasjon1);
                 context.Observasjoner.Add(observasjon2);
+                context.Brukere.Add(bruker);
 
                 context.SaveChanges();
             }
