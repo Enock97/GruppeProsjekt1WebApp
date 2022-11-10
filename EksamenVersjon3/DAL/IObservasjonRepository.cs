@@ -14,5 +14,6 @@ namespace EksamenVersjon3.DAL
         Task<bool> Slett(int id);
         Task<Observasjon> HentEn(int id);
         Task<bool> Endre(Observasjon endreObservasjon);
+        Task<bool> LoggInn(Bruker bruker);
     }
 }
