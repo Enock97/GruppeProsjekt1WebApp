@@ -1,5 +1,6 @@
 using EksamenVersjon3.DAL;
 using EksamenVersjon3.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -16,6 +17,9 @@ namespace EksamenVersjon3.Controllers
         private readonly IObservasjonRepository _db; //Initierer IObservasjoRepository db variabel
 
         private ILogger<ObservasjonController> _log; //Initierer IILoggerFactory i controllern
+
+        private const string _loggetInn = "loggetInn";
+
 
         //Dependency Injection av IObservasjonRepository
         //ILogger blir tatt inn i controllern
@@ -56,7 +60,7 @@ namespace EksamenVersjon3.Controllers
             return await _db.Endre(endreObservasjon);
         }
 
-        //Koden under er hentet fra "Controller" mappen som igjen ligger under mappen "KundeApp2-med-hash-logginn" hentet fra canvas
+        //Koden under er hentet fra "Controller" mappen som igjen ligger under mappen "KundeApp2-med-logginn-sessions" hentet fra canvas
         public async Task<ActionResult> LoggInn(Bruker bruker)
         {
             if (ModelState.IsValid)
@@ -65,8 +69,10 @@ namespace EksamenVersjon3.Controllers
                 if (!returnOK)
                 {
                     _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
+                    HttpContext.Session.SetString(_loggetInn, "");
                     return Ok(false);
                 }
+                HttpContext.Session.SetString(_loggetInn, "LoggetInn");
                 return Ok(true);
             }
             _log.LogInformation("Feil i inputvalidering");
