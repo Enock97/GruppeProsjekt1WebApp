@@ -34,6 +34,15 @@ namespace EksamenVersjon3
             services.AddScoped<IObservasjonRepository, ObservasjonRepository>();
         }
 
+        //Denne koden er hentet fra "startup.cs" som ligger under mappen "KundeApp2-med-logginn-sessions" hentet fra canvas
+        services.AddSession(options =>
+        {
+            options.Cookie.Name = ".AdventureWorks.Session"; 
+            options.IdleTimeout = TimeSpan.FromSeconds(1800); // 30 minutter
+            options.Cookie.IsEssential = true;
+         });
+         services.AddDistributedMemoryCache();
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -54,6 +63,8 @@ namespace EksamenVersjon3
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseSession();
 
             app.UseAuthorization();
 
