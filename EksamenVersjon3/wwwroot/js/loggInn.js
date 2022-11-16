@@ -10,7 +10,7 @@ function loggInn() {
             brukernavn: $("#brukernavn").val(),
             passord: $("#passord").val()
         }
-        $.post("Kunde/LoggInn", bruker, function (OK) {
+        $.post("observasjon/LoggInn", bruker, function (OK) {
             if (OK) {
                 window.location.href = 'index.html';
             }
