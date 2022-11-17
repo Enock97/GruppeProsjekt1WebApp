@@ -1,11 +1,16 @@
 using EksamenVersjon3.DAL;
 using EksamenVersjon3.Model;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
+
+//Koden nedenfor som omhandler sessions er hentet fra "Controller/KundeController" mappen som igjen ligger under mappen "KundeApp2-med-logginn-sessions" hentet fra canvas
+
 
 namespace EksamenVersjon3.Controllers
 {
@@ -17,6 +22,8 @@ namespace EksamenVersjon3.Controllers
 
         private ILogger<ObservasjonController> _log; //Initierer IILoggerFactory i controllern
 
+        private const string _loggetInn = "loggetInn"; 
+
         //Dependency Injection av IObservasjonRepository
         //ILogger blir tatt inn i controllern
         public ObservasjonController(IObservasjonRepository db, ILogger<ObservasjonController> log)
@@ -25,6 +32,120 @@ namespace EksamenVersjon3.Controllers
             _log = log;
         }
 
+        public async Task<ActionResult> Lagre(Observasjon innObservasjon)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                bool returOK = await _db.Lagre(innObservasjon);
+                if (!returOK)
+                {
+                    _log.LogInformation("Observasjon kunne ikke lagres!");
+                    return BadRequest("Observasjon kunne ikke lagres");
+                }
+                return Ok("En ny observasjon har blitt lagret");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
+
+
+        public async Task<ActionResult> HentAlle()
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            List<Observasjon> alleObservasjoner = await _db.HentAlle();
+            return Ok(alleObservasjoner);
+        }
+
+        public async Task<ActionResult> Slett(int id)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            bool returOK = await _db.Slett(id);
+            if (!returOK)
+            {
+                _log.LogInformation("Sletting av observasjon ble ikke utført");
+                return NotFound("Sletting av observasjon ble ikke utført");
+            }
+            return Ok("Observasjon slettet");
+        }
+
+
+        public async Task<ActionResult> HentEn(int id)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                Observasjon observasjonen = await _db.HentEn(id);
+                if (observasjonen == null)
+                {
+                    _log.LogInformation("Fant ikke observasjonen");
+                    return NotFound("Fant ikke observasjonen");
+                }
+                return Ok(observasjonen);
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
+
+
+        public async Task<ActionResult> Endre(Observasjon endreObservasjon)
+        {
+            if (string.IsNullOrEmpty(HttpContext.Session.GetString(_loggetInn)))
+            {
+                return Unauthorized();
+            }
+            if (ModelState.IsValid)
+            {
+                bool returOK = await _db.Endre(endreObservasjon);
+                if (!returOK)
+                {
+                    _log.LogInformation("Endringen kunne ikke utføres");
+                    return NotFound("Endringen av observasjonen kunne ikke utføres");
+                }
+                return Ok("Observasjon endret");
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
+
+
+        public async Task<ActionResult> LoggInn(Bruker bruker)
+        {
+            if (ModelState.IsValid)
+            {
+                bool returnOK = await _db.LoggInn(bruker);
+                if (!returnOK)
+                {
+                    _log.LogInformation("Innloggingen feilet for bruker" + bruker.Brukernavn);
+                    HttpContext.Session.SetString(_loggetInn, "");
+                    return Ok(false);
+                }
+                HttpContext.Session.SetString(_loggetInn, "LoggetInn");
+                return Ok(true);
+            }
+            _log.LogInformation("Feil i inputvalidering");
+            return BadRequest("Feil i inputvalidering på server");
+        }
+
+        public void LoggUt()
+        {
+            HttpContext.Session.SetString(_loggetInn, "");
+        }
+
+
+        /*
         //F�lgende asynkrone CRUD metoder blir initialisert og returnerer metodene i IObservasjonRepository
         public async Task<bool> Lagre(Observasjon innObservasjon)
         {
@@ -71,6 +192,6 @@ namespace EksamenVersjon3.Controllers
             }
             _log.LogInformation("Feil i inputvalidering");
             return BadRequest("Feil i inputvalidering på server");
-        }
+        }*/
     }
 }
