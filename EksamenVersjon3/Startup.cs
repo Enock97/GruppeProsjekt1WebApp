@@ -65,6 +65,8 @@ namespace EksamenVersjon3
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
