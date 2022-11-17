@@ -32,6 +32,16 @@ namespace EksamenVersjon3
             services.AddDbContext<ObservasjonContext>(options =>
                             options.UseSqlite("Data Source=Observasjon.db"));
             services.AddScoped<IObservasjonRepository, ObservasjonRepository>();
+
+            //Denne koden er hentet fra "Startup.cs" mappen som igjen ligger under mappen "KundeApp2-med-logginn-sessions" hentet fra canvas
+            services.AddSession(options =>
+            {
+                options.Cookie.Name = ".AdventureWorks.Session";
+                options.IdleTimeout = TimeSpan.FromSeconds(1800); // 30 minutter
+                options.Cookie.IsEssential = true;
+            });
+            // Denne må også være med:
+            services.AddDistributedMemoryCache();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
